@@ -1,0 +1,48 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+      >MARKETPLACE <i class="bx bxs-store-alt"></i
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/market"
+            >Home <i class="bx bxs-home"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/market/productos"
+            >Productos <i class="bx bxs-package"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/market/categorias"
+            >Categorías <i class="bx bxs-category"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="cart" routerLink="/market/mi-carrito">
+            <span
+              ><i class="bx bxs-cart"></i>
+              <p class="badge bg-primary rounded-pill">
+                {{ cantidadCarrito }}
+              </p></span
+            ></a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

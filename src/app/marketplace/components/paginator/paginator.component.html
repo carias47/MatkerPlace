@@ -1,0 +1,19 @@
+<!--   -->
+<div class="col-12">
+  <div class="mt-3">
+    <button class="btn btn-primary float-start" (click)="prevPage()">
+      Anterior
+    </button>
+
+    <button
+      class="btn btn-primary float-end"
+      [disabled]="active === true"
+      (click)="nextPage()"
+    >
+      Siguiente
+    </button>
+    <div *ngIf="active">
+      <h1>No hay más productos</h1>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <h1 class="mt-3">Te puede interesar...</h1>
+  <hr />
+  <div class="carousel-inner">
+    <div
+      class="carousel-item active"
+      *ngFor="let item of imagenes; let i = index"
+      [class.active]="i === 0"
+    >
+      <img
+        *ngIf="item.images[1]; else notImg"
+        class="d-block w-100"
+        [src]="item.images[0]"
+        alt="First slide"
+      />
+      <ng-template #notImg>
+        <img class="d-block w-100" src="../../../../assets/no-image.jpg" />
+      </ng-template>
+      <div class="carousel-caption">
+        <h1>{{ item.title }}</h1>
+        <h4>{{ item.description }}</h4>
+      </div>
+    </div>
+
+    <a
+      class="carousel-control-prev"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a
+      class="carousel-control-next"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="!componentReady; else components">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+  <ng-template #components>
+    <div class="productos">
+      <app-productos></app-productos>
+    </div>
+    <div class="slider">
+      <app-carousel></app-carousel>
+    </div>
+    <div class="categorias">
+      <app-categories></app-categories>
+    </div>
+  </ng-template>
+</div>

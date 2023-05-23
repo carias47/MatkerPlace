@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 cart-container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            <i class="bx bxs-cart-alt mt-2"></i> Mi carrito:
+            {{ totalCart() | currency : "USD" }}
+          </h2>
+        </div>
+        <div class="col-md-6">
+          <h2 class="float-md-end">
+            <button
+              [disabled]="totalCart() === 0"
+              class="btn btn-warning"
+              (click)="downloadCSV()"
+            >
+              Descargar Productos<i class="bx bxs-download"></i>
+            </button>
+          </h2>
+        </div>
+      </div>
+
+      <div role="tabpanel">
+        <div id="empty-tab-content">
+          <div class="text-center mt-5" *ngIf="totalCart() === 0">
+            <h2>Tu carrito está vacío</h2>
+            <h2><i class="bx bx-sad"></i></h2>
+            <p>
+              Productos que superan tus expectativas. ¡Hazte con ellos ahora!
+            </p>
+            <button
+              [routerLink]="['/market/productos']"
+              type="button"
+              class="btn btn-dark"
+            >
+              Ir al listado
+              <i class="bx bx-spreadsheet"></i>
+            </button>
+          </div>
+
+          <!-- Card -->
+          <div
+            class="card mt-4 col-lg-10 mx-auto"
+            *ngFor="let item of myCart$ | async"
+          >
+            <div class="row g-0">
+              <div class="col-lg-4">
+                <img
+                  class="img-fluid"
+                  [src]="item.images[0]"
+                  alt="First slide"
+                />
+                <ng-template #notImg>
+                  <img
+                    class="d-block w-100"
+                    src="../../../../assets/no-image.jpg"
+                  />
+                </ng-template>
+              </div>
+              <div class="col-lg-8">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h3 class="card-title">{{ item.title }}</h3>
+                      <h4>Categoría: {{ item.category.name }}</h4>
+                      <h4 class="card-text">
+                        {{ item.price | currency : "USD" }}
+                      </h4>
+
+                      <h5 class="card-text">{{ item.cantidad }} unidades</h5>
+                      <div
+                        class="btn-group btn-group-sm"
+                        role="group"
+                        aria-label="..."
+                      >
+                        <button
+                          class="btn btn-primary"
+                          id="aumentar"
+                          (click)="actualizarCantidad('aumentar', item.id)"
+                        >
+                          <i class="bx bx-plus"></i>
+                        </button>
+                        <input
+                          type="text"
+                          size="1"
+                          class="form-control text-center"
+                          [value]="item.cantidad"
+                        />
+                        <button
+                          class="btn btn-primary"
+                          id="disminuir"
+                          (click)="actualizarCantidad('disminuir', item.id)"
+                        >
+                          <i class="bx bx-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 card-body">
+                    <h3 class="card-title ps-2 float-md-end">
+                      Total:
+                      {{
+                        totalProductos(item.price, item.cantidad)
+                          | currency : "USD"
+                      }}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  class="btn btn-primary float-lg-end"
+                  (click)="deleteProduct(item.id)"
+                >
+                  Eliminar del carrito
+                  <i class="bx bx-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- fin card -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
